@@ -1,10 +1,13 @@
 const webpack = require("webpack");
 const path = require("path");
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
 module.exports = {
     devtool: "inline-source-map",
     entry: [
-        "webpack-dev-server/client?http://127.0.0.1:8080/",
+        `webpack-dev-server/client?http://${server_ip_address}:${server_port}/`,
         "webpack/hot/only-dev-server",
         "./src"
     ],
